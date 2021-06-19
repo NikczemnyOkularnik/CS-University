@@ -16,11 +16,21 @@ class Person
     std::string address_;
     int ID_;
     Gender gender_;
+
+public:
+    std::string GetName() { return name_; }
+    std::string GetSurname() { return surname_; }
+    std::string GetAddress() { return address_; }
+    int GetID() { return ID_; }
+    Gender GetGender() { return gender_; }
 };
 
-class Student : Person
+class Student : public Person
 {
     int index_;
+
+public:
+    int GetIndex() { return index_; }
 };
 
 class DataBase
