@@ -3,7 +3,7 @@
 #include "student.hpp"
 #include <vector>
 
-void ShowVector(const vector<Student*>& vec){
+void ShowVector(const std::vector<Student*>& vec){
     for(Student* s : vec){
         s->Print();
         std::cout<<"\n";
