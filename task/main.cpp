@@ -53,5 +53,9 @@ int main() {
     db->SortStudentsSurnames(studentsSortedSurnames);
     std::cout<<"\n";
 
+    std::vector<Student*> studentsSortedID;
+    db->SortStudentsID(studentsSortedID);
+    std::cout << "\n";
+
     return 0;
 }

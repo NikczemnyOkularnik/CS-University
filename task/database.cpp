@@ -46,7 +46,6 @@ void DataBase::SortStudentsSurnames(std::vector<Student *> &sortSurnames)
 
     for (Student *s : students)
     {
-        s->GetSurname();
         sortSurnames.push_back(s);
         s->Print();
         std::cout << "\n";
@@ -57,6 +56,26 @@ void DataBase::SortStudentsSurnames(std::vector<Student *> &sortSurnames)
     std::cout << "Size = " << sortSurnames.size() << "\n";
 
     for (auto i : sortSurnames)
+    {
+        i->Print();
+        std::cout << "\n";
+    }
+}
+
+void DataBase::SortStudentsID(std::vector<Student *> &sortID)
+{
+    std::cout << "przed sortowaniem: " << "\n";
+    for (Student *s : students)
+    {
+        sortID.push_back(s);
+        s->Print();
+        std::cout << "\n";
+    }
+
+    std::sort(sortID.begin(), sortID.end(), sortIDComparator());
+    
+    std::cout << "po sortowaniu: " << "\n";
+    for(auto i :sortID)
     {
         i->Print();
         std::cout << "\n";

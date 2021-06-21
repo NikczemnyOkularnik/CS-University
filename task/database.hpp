@@ -17,12 +17,21 @@ public:
 
     void SortStudentsSurnames(std::vector<Student *> &sortSurnames);
 
+    void SortStudentsID(std::vector<Student *> &sortID);
+
 
 };
 struct sortSurnamesComparator
 {
-    inline bool operator() ( Student* struct1, Student* struct2)
+    inline bool operator() ( Student* s1, Student* s2)
     {
-        return (struct1->GetSurname() < struct2->GetSurname());
+        return (s1->GetSurname() < s2->GetSurname());
+    }
+};
+struct sortIDComparator
+{
+    inline bool operator() (Student* s1, Student* s2)
+    {
+        return(s1->GetID() < s2->GetID());
     }
 };
