@@ -23,13 +23,6 @@ public:
     std::string GetAddress() { return address_; }
     int GetID() { return ID_; }
     Gender GetGender() { return gender_; }
-    //ustawiam konstruktor klasy Person
-    Person (std::string name, std::string surname, std::string adr, int id, Gender)
-        : name_(name)
-        , surname_(surname)
-        , address_(adr)
-        , gender_(Gender::Male)
-    {}
 };
 
 class Student : public Person
@@ -40,12 +33,7 @@ public:
     int GetIndex() { return index_; }
 };
 
-class DataBase: public std::vector<Student>
+class DataBase
 {
-    //inheritance from the vector class
-    //std::vector<Student> student;
+    std::vector<Student> student;
 };
-
-void add_student(Student & St);
-
-void list_student();
