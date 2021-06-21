@@ -1,7 +1,7 @@
 #include <iostream>
-#include "class.hpp"
+#include "database.hpp"
+#include "student.hpp"
 
-int main()
-{
+int main() {
     return 0;
 }
