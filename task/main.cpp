@@ -18,12 +18,14 @@ int main() {
     Student* s2 = new Student("Zuza", "Kowalska", "Wrocław", 144, 2115, Gender::Female);
     Student* s3 = new Student("Michał", "Bąk", "Kraków", 14, 415, Gender::Male);
     Student* s4 = new Student("Stasiu", "Bąk", "Kraków", 13, 515, Gender::Male);
+    Student* s5 = new Student("Zatasiu", "ABąk", "Kraków", 19, 304, Gender::Male);
 
     db->add_student(s);
     db->add_student(s1);
     db->add_student(s2);
     db->add_student(s3);
     db->add_student(s4);
+    db->add_student(s5);
 
     std::cout << "Wyświetl studentów po dodaniu: " << "\n";
     db->list_student();
@@ -45,6 +47,10 @@ int main() {
 
     test = db->GetStudentViaID(14);
     test->Print();
+    std::cout<<"\n";
+
+    std::vector<Student*> studentsSortedSurnames;
+    db->SortStudentsSurnames(studentsSortedSurnames);
     std::cout<<"\n";
 
     return 0;
