@@ -33,8 +33,8 @@ public:
     void SetIndex(const int& index) { index_ = index; }
 
     //ustawiam konstruktor klasy Person
-    Student(std::string name, std::string surname, std::string adr, int id, int index, Gender)
-        : name_(name), surname_(surname), address_(adr), ID_(id), index_(index), gender_(Gender::Male) {}
+    Student(std::string name, std::string surname, std::string adr, int id, int index, Gender gender)
+        : name_(name), surname_(surname), address_(adr), ID_(id), index_(index), gender_(gender) {}
 
     void Print();
 };

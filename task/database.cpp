@@ -10,6 +10,7 @@ void DataBase::add_student(Student* St) {
 void DataBase::list_student() {
     for (Student* s : students) {
         s->Print();
+        std::cout<<"\n";
     }
 }
 
