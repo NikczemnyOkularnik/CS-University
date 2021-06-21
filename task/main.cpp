@@ -29,6 +29,18 @@ int main() {
 
     std::vector<Student*> studentsWithSameSurname;
     db->GetAllStudentsWithSurname(studentsWithSameSurname, "Nowak");
+    ShowVector(studentsWithSameSurname);
+
+    db->GetAllStudentsWithSurname(studentsWithSameSurname, "Kowalska");
+    ShowVector(studentsWithSameSurname);
+
+    Student* test = db->GetStudentViaID(215);
+    test->Print();
+    std::cout<<"\n";
+
+    test = db->GetStudentViaID(515);
+    test->Print();
+    std::cout<<"\n";
 
     return 0;
 }
