@@ -1,11 +1,19 @@
 #include "student.hpp"
 
-void add_student(Student& St) {
-    void push_back(Student St);
+void Student::Print() {
+    std::cout << "Imie: " << name_ << " Nazwisko: " << surname_ << " PESEL: " << ID_ << " Płeć: " << GetGenderInString() << " index: " << index_ << " adres: " << address_;
 }
 
-void list_student() {
-    for (vector<Student>::iterator it = begin(); it != end(); it++) {
-        std::cout << (*it) << std::endl;
+std::string Student::GetGenderInString() {
+    switch (gender_) {
+    case Gender::Male:
+        return "Chłopak";
+        break;
+    case Gender::Female:
+        return "Dziewczyna";
+        break;
+    default:
+        return "";
+        break;
     }
 }

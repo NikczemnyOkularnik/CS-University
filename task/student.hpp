@@ -34,4 +34,6 @@ public:
     //ustawiam konstruktor klasy Person
     Student(std::string name, std::string surname, std::string adr, int id, int index, Gender)
         : name_(name), surname_(surname), address_(adr), ID_(id), index_(index), gender_(Gender::Male) {}
+
+    void Print();
 };
