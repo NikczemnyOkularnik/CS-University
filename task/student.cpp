@@ -13,6 +13,9 @@ std::string Student::GetGenderInString() {
     case Gender::Female:
         return "Dziewczyna";
         break;
+    case Gender::Other:
+        return "Other";
+        break;
     default:
         return "";
         break;

@@ -5,7 +5,8 @@
 
 enum class Gender {
     Male,
-    Female
+    Female,
+    Other
 };
 
 class Student {
