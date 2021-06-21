@@ -57,5 +57,11 @@ int main() {
     db->SortStudentsID(studentsSortedID);
     std::cout << "\n";
 
+    std::cout << "Wyświetl studentów przed usuwaniem" << "\n";
+    db->list_student();
+    db->DeleteByIndex(415);
+    std::cout << "Wyświetl studentów po usuwaniu" << "\n";
+    db->list_student();
+
     return 0;
 }

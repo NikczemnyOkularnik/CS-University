@@ -19,7 +19,7 @@ public:
 
     void SortStudentsID(std::vector<Student *> &sortID);
 
-
+    void DeleteByIndex(int);
 };
 struct sortSurnamesComparator
 {

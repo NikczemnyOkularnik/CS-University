@@ -81,3 +81,14 @@ void DataBase::SortStudentsID(std::vector<Student *> &sortID)
         std::cout << "\n";
     }
 }
+
+void DataBase::DeleteByIndex(int deleteIndex)
+{
+    for(int i = 0; i < students.size(); i++)
+    {
+        if(students[i]->GetIndex() == deleteIndex)
+        {
+            students.erase(students.begin() + i);
+        }
+    }
+}
