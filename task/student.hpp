@@ -22,6 +22,7 @@ public:
     std::string GetAddress() { return address_; }
     int GetID() { return ID_; }
     Gender GetGender() { return gender_; }
+    std::string GetGenderInString();//
     int GetIndex() { return index_; }
 
     void SetName(const std::string& name) { name_ = name; }
