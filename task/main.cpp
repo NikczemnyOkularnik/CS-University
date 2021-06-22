@@ -41,7 +41,7 @@ int main() {
     std::cout<< "Wyświetl studentów o nazwisku Kowalska" << "\n";
     ShowVector(studentsWithSameSurname2);
 
-    Student* test = db->GetStudentViaID(13);
+    Student* test = db->GetStudentViaID(1);
     test->Print();
     std::cout<<"\n";
 
@@ -60,8 +60,10 @@ int main() {
     std::cout << "Wyświetl studentów przed usuwaniem" << "\n";
     db->list_student();
     db->DeleteByIndex(415);
+
     std::cout << "Wyświetl studentów po usuwaniu" << "\n";
     db->list_student();
 
+    db->ID(1);
     return 0;
 }

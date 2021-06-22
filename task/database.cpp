@@ -40,6 +40,27 @@ Student *DataBase::GetStudentViaID(const int &searchingID)
     return nullptr;
 }
 
+void DataBase::ID(int a)
+{
+    std::vector<int> check;
+    for(auto l : students)
+    {
+        check.push_back(l->GetID());
+    }
+
+    std::cout << "Wyświetl ID: " << "\n\n";
+
+    for(auto k : check)
+    {
+        if(k == a)
+        {
+            std::cout << a << "Istnieje student z podanym ID " << "\n";
+            Student * test = GetStudentViaID(a);
+            test->Print();
+        }  
+    }
+}
+
 void DataBase::SortStudentsSurnames(std::vector<Student *> &sortSurnames)
 {
     std::cout << "przed sortowaniem " << "\n";
