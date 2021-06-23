@@ -36,34 +36,42 @@ Student *DataBase::GetStudentViaID(const int &searchingID)
             return s;
         }
     }
-    std::cout << "No students with ID = " << searchingID;
     return nullptr;
 }
 
 void DataBase::ID(int a)
 {
     std::vector<int> check;
-    for(auto l : students)
+
+    for (auto l : students)
     {
         check.push_back(l->GetID());
     }
 
-    std::cout << "Wyświetl ID: " << "\n\n";
+    std::cout << "\n";
 
-    for(auto k : check)
+    for (auto k : check)
     {
-        if(k == a)
+        if (k == a)
         {
-            std::cout << a << "Istnieje student z podanym ID " << "\n";
-            Student * test = GetStudentViaID(a);
+            std::cout << "Istnieje student z podanym ID: " << a << "\n";
+            Student *test = GetStudentViaID(a);
             test->Print();
-        }  
+            return;
+        }
     }
+    std::cout << "Brak ID " << a << " w bazie danych. Obecne ID w bazie danych: " << "\n";
+
+    for (auto k : check)
+    {
+       std::cout << k << ", ";
+    }
+
 }
 
 void DataBase::SortStudentsSurnames(std::vector<Student *> &sortSurnames)
 {
-    std::cout << "przed sortowaniem " << "\n";
+    std::cout << "Przed sortowaniem nazwisk: " << "\n";
 
     for (Student *s : students)
     {
@@ -73,8 +81,8 @@ void DataBase::SortStudentsSurnames(std::vector<Student *> &sortSurnames)
     }
     std::sort(sortSurnames.begin(), sortSurnames.end(), sortSurnamesComparator());
 
-    std::cout << "po sortowaniu: " << "\n";
-    std::cout << "Size = " << sortSurnames.size() << "\n";
+    std::cout << "\n";
+    std::cout << "Po sortowaniu nazwisk: " << "\n";
 
     for (auto i : sortSurnames)
     {
@@ -85,7 +93,8 @@ void DataBase::SortStudentsSurnames(std::vector<Student *> &sortSurnames)
 
 void DataBase::SortStudentsID(std::vector<Student *> &sortID)
 {
-    std::cout << "przed sortowaniem: " << "\n";
+    std::cout << "Przed sortowaniem ID: " << "\n";
+
     for (Student *s : students)
     {
         sortID.push_back(s);
@@ -94,9 +103,10 @@ void DataBase::SortStudentsID(std::vector<Student *> &sortID)
     }
 
     std::sort(sortID.begin(), sortID.end(), sortIDComparator());
-    
-    std::cout << "po sortowaniu: " << "\n";
-    for(auto i :sortID)
+    std::cout << "\n";
+    std::cout << "Po sortowaniu ID: " << "\n";
+
+    for (auto i : sortID)
     {
         i->Print();
         std::cout << "\n";
@@ -105,11 +115,12 @@ void DataBase::SortStudentsID(std::vector<Student *> &sortID)
 
 void DataBase::DeleteByIndex(int deleteIndex)
 {
-    for(int i = 0; i < students.size(); i++)
+    for (int i = 0; i < students.size(); i++)
     {
-        if(students[i]->GetIndex() == deleteIndex)
+        if (students[i]->GetIndex() == deleteIndex)
         {
             students.erase(students.begin() + i);
         }
     }
 }
+
