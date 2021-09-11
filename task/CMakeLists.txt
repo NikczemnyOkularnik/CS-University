@@ -2,10 +2,12 @@ cmake_minimum_required(VERSION 3.10)
 project(University)
 
 set(SRC database.cpp student.cpp)
+set(testFile ../test/test.cpp ../test/catch_amalgamated.cpp)
 set(COMP_FLAGS -Wall -Wextra -Werror -pedantic -Wconversion)
 
 add_library(${PROJECT_NAME}-lib STATIC ${SRC})
 add_executable(${PROJECT_NAME} main.cpp ${SRC})
+add_executable(${PROJECT_NAME}-ut ${testFile} ${SRC})
 
 target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
 
@@ -14,7 +16,10 @@ target_compile_options(${PROJECT_NAME} PRIVATE ${COMP_FLAGS})
 set_target_properties(${PROJECT_NAME} PROPERTIES
                       CXX_STANDARD 17
                       CXX_STANDARD_REQUIRED ON)
+                      
 set_target_properties(${PROJECT_NAME}-lib PROPERTIES
                       CXX_STANDARD 17
                       CXX_STANDARD_REQUIRED ON)
-
+set_target_properties(${PROJECT_NAME}-ut PROPERTIES
+                      CXX_STANDARD 17
+                      CXX_STANDARD_REQUIRED ON)

@@ -14,7 +14,7 @@ void ShowVector(const std::vector<Student *> &vec)
 
 int main()
 {
-   /* DataBase *db = new DataBase();
+    DataBase *db = new DataBase();
 
     Student *s = new Student("Stanisław", "Nowak", "Warszawa", 1, 215, Gender::Male);
     Student *s1 = new Student("Kasia", "Nowak", "Warszawa", 12, 2145, Gender::Female);
@@ -72,6 +72,6 @@ int main()
     std::cout << "Wyświetl studentów po usuwaniu" << "\n";
     db->list_student();
     std::cout << "\n";
-    */
+    
     return 0;
 }
