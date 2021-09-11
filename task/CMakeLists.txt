@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 project(University)
 
 set(SRC database.cpp student.cpp)
-set(COMP_FLAGS -Wall -Wextra -pedantic -Wconversion)
+set(COMP_FLAGS -Wall -Wextra -Werror -pedantic -Wconversion)
 
 add_library(${PROJECT_NAME}-lib STATIC ${SRC})
 add_executable(${PROJECT_NAME} main.cpp ${SRC})
