@@ -14,8 +14,8 @@ class Student {
     std::string surname_;
     std::string address_;
     int ID_;
-    Gender gender_;
     int index_;
+    Gender gender_;
 
 public:
     std::string GetName() { return name_; }

@@ -115,7 +115,7 @@ void DataBase::SortStudentsID(std::vector<Student *> &sortID)
 
 void DataBase::DeleteByIndex(int deleteIndex)
 {
-    for (int i = 0; i < students.size(); i++)
+    for (size_t i = 0; i < students.size(); i++)
     {
         if (students[i]->GetIndex() == deleteIndex)
         {
