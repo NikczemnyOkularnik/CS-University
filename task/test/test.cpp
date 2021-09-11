@@ -52,7 +52,7 @@ SCENARIO("Adding new students to database")
         DataBase *db = new DataBase();
 
         Student *s = new Student("Stanisław", "Nowak", "Warszawa", 1, 215, Gender::Male);
-        Student *s1 = new Student("Kasia", "Nowak", "Warszawa", 12, 2145, Gender::Female);
+        Student *s1 = new Student("Kasia", "Adamiec", "Warszawa", 12, 2145, Gender::Female);
         Student *s2 = new Student("Zuza", "Kowalska", "Wrocław", 144, 2115, Gender::Female);
         db->add_student(s);
         db->add_student(s1);
@@ -65,8 +65,20 @@ SCENARIO("Adding new students to database")
             db->GetAllStudentsWithSurname(studentsWithSameSurname, "Nowak");
             THEN("vector contains Nowak")
             {
-                auto a = studentsWithSameSurname[0];
-                CHECK(a->GetSurname() == "Nowak");
+                REQUIRE(studentsWithSameSurname.size());
+                auto Surname0 = studentsWithSameSurname[0];
+                CHECK(Surname0->GetSurname() == "Nowak");
+            }
+        }
+        WHEN("Sort students by surname")
+        {
+            std::vector<Student *> studentsSortedSurnames;
+            db->SortStudentsSurnames(studentsSortedSurnames);
+            THEN("Surnames should be sorted alphabetically")
+            {
+                REQUIRE(studentsSortedSurnames.size());
+                auto Surname0 = studentsSortedSurnames[0];
+                CHECK(Surname0->GetSurname() == "Adamiec");
             }
         }
     }

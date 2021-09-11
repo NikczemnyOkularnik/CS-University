@@ -123,7 +123,6 @@ void DataBase::DeleteByIndex(int deleteIndex)
         }
     }
 }
-
 size_t DataBase::GetVectorSize()
 {
     return students.size();
