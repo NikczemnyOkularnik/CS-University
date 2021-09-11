@@ -30,6 +30,7 @@ int main()
     db->add_student(s4);
     db->add_student(s5);
 
+
     std::cout << "Wyświetl studentów po dodaniu: " << "\n";
     db->list_student();
     std::cout << "\n\n";
