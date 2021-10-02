@@ -1,23 +1,11 @@
 #include "student.hpp"
 
+Student::Student(std::string name, std::string surname, std::string adr, int id, Gender gender, int index)
+        : UniversityPerson(name, surname, adr, id, gender)
+        , index_(index) {}
+
 void Student::Print() {
-    std::cout << "Imie: " << name_ << " Nazwisko: " << surname_ << " PESEL: " << ID_ << " Płeć: " << GetGenderInString() << " index: " << index_ << " adres: " << address_;
+    std::cout << "Imie: " << name_ << " Nazwisko: " << surname_ << " PESEL: " << ID_ << " Płeć: " << GetGenderInString()  << " adres: " << address_ << " index: " << index_;
 }
 
 
-std::string Student::GetGenderInString() {
-    switch (gender_) {
-    case Gender::Male:
-        return "Chłopak";
-        break;
-    case Gender::Female:
-        return "Dziewczyna";
-        break;
-    case Gender::Other:
-        return "Other";
-        break;
-    default:
-        return "";
-        break;
-    }
-}

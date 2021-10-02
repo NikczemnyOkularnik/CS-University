@@ -2,7 +2,7 @@
 #include "database.hpp"
 #include "student.hpp"
 #include <vector>
-
+/*
 void ShowVector(const std::vector<Student *> &vec)
 {
     for (Student *s : vec)
@@ -74,4 +74,10 @@ int main()
     std::cout << "\n";
     
     return 0;
+}
+*/
+
+int main()
+{
+    return(0);
 }
