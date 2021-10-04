@@ -10,7 +10,8 @@ class DataBase
     std::vector<std::unique_ptr<UniversityPerson>> person; 
 
 public:
-    void add_student(Student *St);
+    void add_student(Student *);
+    void add_worker(Worker *);
     void list_student();
     void GetAllStudentsWithSurname(std::vector<Student *> &foundStudents, const std::string &searchingSurname); 
     Student *GetStudentViaID(const int &searchingID); 

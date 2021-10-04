@@ -1,28 +1,30 @@
 #include "database.hpp"
 #include <algorithm>
 #include <iostream>
+#include <vector>
 
 void DataBase::add_student(Student *St)
 {
-    person.push_back(St);
+    person.emplace_back(St);
 }
 void DataBase::add_worker(Worker *Wr)
 {
-    person.push_back(Wr);
+    person.emplace_back(Wr);
 }
 
-void DataBase::list_student()
+void DataBase::list_student() //do poprawy
 {
-    for (Student *s : students)
+    for (auto s : person)
     {
         s->Print();
         std::cout << "\n";
     }
+    // std::for_each(person.begin(), person.end(), [](auto s){ s.Print(); })
 }
 
-void DataBase::GetAllStudentsWithSurname(std::vector<Student *> &foundStudents, const std::string &searchingSurname)
+void DataBase::GetAllStudentsWithSurname(std::vector<Student *> &foundStudents, const std::string &searchingSurname) //popr
 {
-    for (Student *s : students)
+    for (Student *s : person)
     {
         if (s->GetSurname().compare(searchingSurname) == 0)
         {
@@ -33,7 +35,7 @@ void DataBase::GetAllStudentsWithSurname(std::vector<Student *> &foundStudents, 
 
 Student *DataBase::GetStudentViaID(const int &searchingID)
 {
-    for (Student *s : students)
+    for (Student *s : person)
     {
         if (s->GetID() == searchingID)
         {
@@ -47,7 +49,7 @@ void DataBase::ID(int a)
 {
     std::vector<int> check;
 
-    for (auto l : students)
+    for (auto l : person)
     {
         check.push_back(l->GetID());
     }
@@ -77,7 +79,7 @@ void DataBase::SortStudentsSurnames(std::vector<Student *> &sortSurnames)
 {
     std::cout << "Przed sortowaniem nazwisk: " << "\n";
 
-    for (Student *s : students)
+    for (Student *s : person)
     {
         sortSurnames.push_back(s);
         s->Print();
@@ -99,7 +101,7 @@ void DataBase::SortStudentsID(std::vector<Student *> &sortID)
 {
     std::cout << "Przed sortowaniem ID: " << "\n";
 
-    for (Student *s : students)
+    for (Student *s : UniversityPerson)
     {
         sortID.push_back(s);
         s->Print();
@@ -117,18 +119,18 @@ void DataBase::SortStudentsID(std::vector<Student *> &sortID)
     }
 }
 
-void DataBase::DeleteByIndex(int deleteIndex)
+void DataBase::DeleteByIndex(int deleteIndex)//poprawic
 {
-    for (size_t i = 0; i < students.size(); i++)
+    for (size_t i = 0; i < person.size(); i++)
     {
-        if (students[i]->GetIndex() == deleteIndex)
+        if (person[i]->GetIndex() == deleteIndex)
         {
-            students.erase(students.begin() + i);
+            person.erase(person.begin() + i);
         }
     }
 }
 size_t DataBase::GetVectorSize()
 {
-    return students.size();
+    return person.size();
 }
 
