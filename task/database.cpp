@@ -4,7 +4,11 @@
 
 void DataBase::add_student(Student *St)
 {
-    students.push_back(St);
+    person.push_back(St);
+}
+void DataBase::add_worker(Worker *Wr)
+{
+    person.push_back(Wr);
 }
 
 void DataBase::list_student()

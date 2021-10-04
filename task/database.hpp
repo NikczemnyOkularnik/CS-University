@@ -1,11 +1,13 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <memory>
 #include "student.hpp"
+#include "worker.hpp"
 
 class DataBase
 {
-    std::vector<Student *> students;
+    std::vector<std::unique_ptr<UniversityPerson>> person; 
 
 public:
     void add_student(Student *St);
@@ -17,6 +19,8 @@ public:
     void DeleteByIndex(int);
     void ID(int);
     size_t GetVectorSize();
+    //std::unique_ptr<UniversityPerson> p1 = std::make_unique<Student>;
+    //std::unique_ptr<UniversityPerson> p2 = std::make_unique<Worker>;
 
 };
 struct sortSurnamesComparator
