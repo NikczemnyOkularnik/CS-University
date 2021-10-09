@@ -1,7 +1,9 @@
 #include <iostream>
 #include "database.hpp"
 #include "student.hpp"
+#include "generator.hpp"
 #include <vector>
+#include <memory>
 /*
 void ShowVector(const std::vector<Student *> &vec)
 {
@@ -79,5 +81,14 @@ int main()
 
 int main()
 {
+    Generator* g = new Generator();
+    std::vector<std::unique_ptr<UniversityPerson>> person;
+
+    g->GeneratePersonel(10, 2, person);
+
+    for(auto a : person){
+        a->Print();
+    }
+
     return(0);
 }
