@@ -1,5 +1,7 @@
 #include <iostream>
+#include "universityPerson.hpp"
 #include "database.hpp"
+#include "worker.hpp"
 #include "student.hpp"
 #include "generator.hpp"
 #include <vector>
@@ -81,14 +83,18 @@ int main()
 
 int main()
 {
-    Generator* g = new Generator();
-    std::vector<std::unique_ptr<UniversityPerson>> person;
+    // DataBase *db = new DataBase();
+    // Generator* g = new Generator();
+    // //std::vector<std::unique_ptr<UniversityPerson>> person;
 
-    g->GeneratePersonel(10, 2, person);
+    // g->GeneratePersonel(10, 2, db->person);
 
-    for(auto a : person){
-        a->Print();
-    }
-
+    DataBase *db = new DataBase(); 
+    auto student1 = std::make_unique<Student>("Stanisław", "Nowak", "Warszawa", 1, Gender::Male, 215);
+    auto worker1 = std::make_unique<Worker>("Stasiu", "Nowak", "kwik", 15,Gender::Male, 2300);
+    db->add_student(student1);
+    std::cout << db->getDbSize() << '\n';
+    db->add_worker(worker1);
+    std::cout << db->getDbSize() << '\n';
     return(0);
 }

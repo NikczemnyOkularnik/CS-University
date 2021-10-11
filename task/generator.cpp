@@ -16,7 +16,7 @@ void Generator::GeneratePersonel(int NumberOfStudentsToGenerate, int NumberOfWor
     	surnameRandId = rand() % SURNAMES_SIZE;
     	addressRandId = rand() % ADDRESSES_SIZE;
 
-        Student* s = new Student(names_[nameRandId], surnames_[surnameRandId], adresses_[addressRandId], i, i % 2 == 0 ? Gender::Female : Gender::Male, i);
+        std::unique_ptr<Student> s = std::make_unique<Student>(names_[nameRandId], surnames_[surnameRandId], adresses_[addressRandId], i, i % 2 == 0 ? Gender::Female : Gender::Male, i);
         person.emplace_back(s);
     }
     for (int i = 0; i < NumberOfWorkersToGenerate; i++) {
@@ -24,7 +24,7 @@ void Generator::GeneratePersonel(int NumberOfStudentsToGenerate, int NumberOfWor
     	surnameRandId = rand() % SURNAMES_SIZE;
     	addressRandId = rand() % ADDRESSES_SIZE;
 		
-        Worker* w = new Worker(names_[nameRandId], surnames_[surnameRandId], adresses_[addressRandId], i, i % 2 == 0 ? Gender::Female : Gender::Male, i);
+        std::unique_ptr<Worker> w = std::make_unique<Worker>(names_[nameRandId], surnames_[surnameRandId], adresses_[addressRandId], i, i % 2 == 0 ? Gender::Female : Gender::Male, i);
         person.emplace_back(w);
     }
 }

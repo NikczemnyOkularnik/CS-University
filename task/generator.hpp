@@ -8,6 +8,7 @@ class UniversityPerson;
 class Generator {
 public:
     void GeneratePersonel(int NumberOfStudentsToGenerate, int NumberOfWorkersToGenerate, std::vector<std::unique_ptr<UniversityPerson>>& person);
+    ~Generator();
 
 private:
     static constexpr int NAMES_SIZE = 27;

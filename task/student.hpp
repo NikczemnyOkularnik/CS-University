@@ -10,7 +10,6 @@ public:
 
     //ustawiam konstruktor klasy Person
     Student(std::string name, std::string surname, std::string adr, int id, Gender gender, int index);
-    ~Student() override;
     void Print() override;
 
 };

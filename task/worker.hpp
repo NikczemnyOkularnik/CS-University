@@ -10,7 +10,6 @@ class Worker : public UniversityPerson
     void SetMoney(size_t & money);
 
     Worker(std::string name, std::string surname, std::string adr, int id, Gender gender, size_t money);
-    ~Worker() override;
 
     void Print() override;
 };

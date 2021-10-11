@@ -8,10 +8,10 @@
 class DataBase
 {
     std::vector<std::unique_ptr<UniversityPerson>> person; 
-
 public:
-    void add_student(Student *);
-    void add_worker(Worker *);
+    void add_student(std::unique_ptr<Student>&);
+    void add_worker(std::unique_ptr<Worker>&);
+    size_t getDbSize(){return person.size();}
     void list_student();
     void GetAllStudentsWithSurname(std::vector<Student *> &foundStudents, const std::string &searchingSurname); 
     Student *GetStudentViaID(const int &searchingID); 
@@ -20,6 +20,7 @@ public:
     void DeleteByIndex(int);
     void ID(int);
     size_t GetVectorSize();
+    ~DataBase();
     //std::unique_ptr<UniversityPerson> p1 = std::make_unique<Student>;
     //std::unique_ptr<UniversityPerson> p2 = std::make_unique<Worker>;
 
