@@ -43,16 +43,27 @@ void DataBase::show_workers()
                       }
                   });
 }
-// void DataBase::GetAllStudentsWithSurname(std::vector<Student *> &foundStudents, const std::string &searchingSurname) //popr
-// {
-//     for (Student *s : person)
-//     {
-//         if (s->GetSurname().compare(searchingSurname) == 0)
-//         {
-//             foundStudents.push_back(s);
-//         }
-//     }
-// }
+void DataBase::GetStudentsWithSurname(const std::string &searchingSurname) //popr
+{
+    std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
+                  {
+                      if (PersonType::Student == s->GetPersonType())
+                      {
+                          if(s->GetSurname().compare(searchingSurname) == 0 )
+                          {
+                                s->Print();
+                                std::cout << '\n';
+                          }
+                      }
+                  });
+    // for (Student *s : person)
+    // {
+    //     if (s->GetSurname().compare(searchingSurname) == 0)
+    //     {
+    //         foundStudents.push_back(s);
+    //     }
+    // }
+}
 
 // Student *DataBase::GetStudentViaID(const int &searchingID)
 // {

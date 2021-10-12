@@ -15,7 +15,7 @@ public:
     void show_database();
     void show_students();
     void show_workers();
-    void GetAllStudentsWithSurname(std::vector<Student *> &foundStudents, const std::string &searchingSurname); 
+    void GetStudentsWithSurname(const std::string &searchingSurname); 
     Student *GetStudentViaID(const int &searchingID); 
     void SortStudentsSurnames(std::vector<Student *> &sortSurnames);
     void SortStudentsID(std::vector<Student *> &sortID);
