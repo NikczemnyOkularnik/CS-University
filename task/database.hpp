@@ -16,8 +16,8 @@ public:
     void show_students();
     void show_workers();
     void GetStudentsWithSurname(const std::string &searchingSurname); 
-    Student *GetStudentViaID(const int &searchingID); 
-    void SortStudentsSurnames(std::vector<Student *> &sortSurnames);
+    std::unique_ptr<UniversityPerson> GetStudentViaID(const int &searchingID); 
+    void SortSurnames();
     void SortStudentsID(std::vector<Student *> &sortID);
     void DeleteByIndex(int);
     void ID(int);
@@ -29,7 +29,7 @@ public:
 };
 struct sortSurnamesComparator
 {
-    inline bool operator()(Student *s1, Student *s2)
+    inline bool operator()(std::unique_ptr<UniversityPerson> & s1, std::unique_ptr<UniversityPerson> & s2)
     {
         return (s1->GetSurname() < s2->GetSurname());
     }

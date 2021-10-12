@@ -49,31 +49,28 @@ void DataBase::GetStudentsWithSurname(const std::string &searchingSurname) //pop
                   {
                       if (PersonType::Student == s->GetPersonType())
                       {
-                          if(s->GetSurname().compare(searchingSurname) == 0 )
+                          if (s->GetSurname().compare(searchingSurname) == 0)
                           {
-                                s->Print();
-                                std::cout << '\n';
+                              s->Print();
+                              std::cout << '\n';
                           }
                       }
                   });
-    // for (Student *s : person)
-    // {
-    //     if (s->GetSurname().compare(searchingSurname) == 0)
-    //     {
-    //         foundStudents.push_back(s);
-    //     }
-    // }
 }
 
-// Student *DataBase::GetStudentViaID(const int &searchingID)
+//  std::unique_ptr<UniversityPerson> DataBase::GetStudentViaID(const int &searchingID)
 // {
-//     for (Student *s : person)
-//     {
-//         if (s->GetID() == searchingID)
-//         {
-//             return s;
-//         }
-//     }
+//     std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
+//                   {
+//                       if (PersonType::Student == s->GetPersonType())
+//                       {
+//                           if (s->GetID() == searchingID)
+//                           {
+//                               return &s;
+//                           }
+//                       }
+//                       return &s;
+//                   });
 //     return nullptr;
 // }
 
@@ -107,27 +104,23 @@ void DataBase::GetStudentsWithSurname(const std::string &searchingSurname) //pop
 
 // }
 
-// void DataBase::SortStudentsSurnames(std::vector<Student *> &sortSurnames)
-// {
-//     std::cout << "Przed sortowaniem nazwisk: " << "\n";
-
-//     for (Student *s : person)
-//     {
-//         sortSurnames.push_back(s);
-//         s->Print();
-//         std::cout << "\n";
-//     }
-//     std::sort(sortSurnames.begin(), sortSurnames.end(), sortSurnamesComparator());
-
-//     std::cout << "\n";
-//     std::cout << "Po sortowaniu nazwisk: " << "\n";
-
-//     for (auto i : sortSurnames)
-//     {
-//         i->Print();
-//         std::cout << "\n";
-//     }
-// }
+void DataBase::SortSurnames()
+{
+    std::cout << "Przed sortowaniem nazwisk: " << '\n';
+    std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
+                  {
+                      s->Print();
+                      std::cout << "\n";
+                  });
+    std::sort(person.begin(), person.end(), sortSurnamesComparator());
+    std::cout << "\n";
+    std::cout << "Po sortowaniu nazwisk: " << '\n';
+    std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
+                  {
+                      s->Print();
+                      std::cout << "\n";
+                  });
+}
 
 // void DataBase::SortStudentsID(std::vector<Student *> &sortID)
 // {

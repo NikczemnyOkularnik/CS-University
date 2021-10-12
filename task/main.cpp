@@ -90,21 +90,16 @@ int main()
     // g->GeneratePersonel(10, 2, db->person);
 
     DataBase *db = new DataBase(); 
-    auto student1 = std::make_unique<Student>("Stanisław", "Nowak", "Warszawa", 1, Gender::Male, 215);
-    auto student2 = std::make_unique<Student>("Stanisław", "Nowak", "Warszawa", 1, Gender::Male, 215);
-    auto student3 = std::make_unique<Student>("Grzegorz", "Kwak", "Warszawa", 1, Gender::Male, 215);
-    auto worker1 = std::make_unique<Worker>("Stasiu", "Nowak", "kwik", 15,Gender::Male, 2300);
+    auto student1 = std::make_unique<Student>("Stanisław", "ANowak", "Warszawa", 1, Gender::Male, 215);
+    auto student2 = std::make_unique<Student>("Stanisław", "VNowak", "Warszawa", 1, Gender::Male, 215);
+    auto student3 = std::make_unique<Student>("Grzegorz", "Kwak", "Warszawa", 2, Gender::Male, 215);
+    auto worker1 = std::make_unique<Worker>("Stasiu", "CNowak", "kwik", 15,Gender::Male, 2300);
     db->add_student(student1);
     db->add_student(student2);
     db->add_student(student3);
-    std::cout << db->getDbSize() << '\n';
     db->add_worker(worker1);
-    std::cout << db->getDbSize() << '\n';
 
-    db->show_database();
-    db->show_workers();
-    db->show_students();
+    db->SortSurnames();
 
-    db->GetStudentsWithSurname("Nowak");
     return(0);
 }
