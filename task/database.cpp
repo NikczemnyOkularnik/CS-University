@@ -3,24 +3,23 @@
 #include <iostream>
 #include <vector>
 
-void DataBase::add_student(std::unique_ptr<Student>& St)
+void DataBase::add_student(std::unique_ptr<Student> &St)
 {
     person.emplace_back(std::move(St));
 }
-void DataBase::add_worker(std::unique_ptr<Worker>& Wr)
+void DataBase::add_worker(std::unique_ptr<Worker> &Wr)
 {
     person.emplace_back(std::move(Wr));
 }
 
-// void DataBase::list_student() //do poprawy
-// {
-//     for (auto s : person)
-//     {
-//         s->Print();
-//         std::cout << "\n";
-//     }
-//     // std::for_each(person.begin(), person.end(), [](auto s){ s.Print(); })
-// }
+void DataBase::show_database()
+{
+    std::for_each(person.begin(), person.end(), [](std::unique_ptr<UniversityPerson> &s)
+                  {
+                      s->Print();
+                      std::cout << '\n';
+                  });
+}
 
 // void DataBase::GetAllStudentsWithSurname(std::vector<Student *> &foundStudents, const std::string &searchingSurname) //popr
 // {
@@ -133,4 +132,3 @@ void DataBase::add_worker(std::unique_ptr<Worker>& Wr)
 // {
 //     return person.size();
 // }
-

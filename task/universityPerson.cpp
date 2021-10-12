@@ -3,6 +3,7 @@
 void UniversityPerson::Print()
 {
     std::cout << "Imie: " << name_ << " Nazwisko: " << surname_ << " PESEL: " << ID_ << " Płeć: " << GetGenderInString() << " adres: " << address_;
+    std::cout << '\n';
 }
 
 UniversityPerson::UniversityPerson(std::string name, std::string surname, std::string adr, int id, Gender gender)

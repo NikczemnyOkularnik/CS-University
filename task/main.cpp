@@ -96,5 +96,7 @@ int main()
     std::cout << db->getDbSize() << '\n';
     db->add_worker(worker1);
     std::cout << db->getDbSize() << '\n';
+
+    db->show_database();
     return(0);
 }
