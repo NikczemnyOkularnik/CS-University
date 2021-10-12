@@ -13,6 +13,8 @@ public:
     void add_worker(std::unique_ptr<Worker>&);
     size_t getDbSize(){return person.size();}
     void show_database();
+    void show_students();
+    void show_workers();
     void GetAllStudentsWithSurname(std::vector<Student *> &foundStudents, const std::string &searchingSurname); 
     Student *GetStudentViaID(const int &searchingID); 
     void SortStudentsSurnames(std::vector<Student *> &sortSurnames);
