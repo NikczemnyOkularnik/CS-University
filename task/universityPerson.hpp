@@ -8,6 +8,11 @@ enum class Gender {
     Female,
     Other
 };
+enum class PersonType{
+    UniversityPerson,
+    Student,
+    Worker
+};
 
 class UniversityPerson {
 protected:
@@ -23,7 +28,9 @@ public:
     std::string GetAddress() { return address_; }
     int GetID() { return ID_; }
     Gender GetGender() { return gender_; }
-    std::string GetGenderInString();//
+    virtual PersonType GetPersonType() {return PersonType::UniversityPerson;}
+    std::string GetGenderInString();//  
+
 
     void SetName(const std::string& name) { name_ = name; }
     void SetSurname(const std::string& surname) { surname_ = surname; }

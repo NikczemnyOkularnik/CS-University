@@ -11,6 +11,7 @@ public:
     //ustawiam konstruktor klasy Person
     Student(std::string name, std::string surname, std::string adr, int id, Gender gender, int index);
     void Print() override;
+    PersonType GetPersonType() override {return PersonType::Student;};
 
 };
 

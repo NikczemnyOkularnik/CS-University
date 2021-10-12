@@ -98,5 +98,7 @@ int main()
     std::cout << db->getDbSize() << '\n';
 
     db->show_database();
+    db->show_workers();
+    db->show_students();
     return(0);
 }

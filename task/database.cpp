@@ -18,26 +18,29 @@ void DataBase::show_database()
     std::for_each(person.begin(), person.end(), [](std::unique_ptr<UniversityPerson> &s)
                   {
                       s->Print();
-                      std::cout << "  |  " << typeid(s).name();
                       std::cout << '\n';
                   });
 }
 void DataBase::show_students()
 {
-     std::for_each(person.begin(), person.end(), [](std::unique_ptr<UniversityPerson> &s)
+    std::for_each(person.begin(), person.end(), [](std::unique_ptr<UniversityPerson> &s)
                   {
-                       //--------------Jak odróżnić studenta od workera?
-                      s->Print();
-                      std::cout << '\n';
+                      if (PersonType::Student == s->GetPersonType())
+                      {
+                          s->Print();
+                          std::cout << '\n';
+                      }
                   });
 }
 void DataBase::show_workers()
 {
-      std::for_each(person.begin(), person.end(), [](std::unique_ptr<UniversityPerson> &s)
+    std::for_each(person.begin(), person.end(), [](std::unique_ptr<UniversityPerson> &s)
                   {
-                      //--------------Jak odróżnić studenta od workera?
-                      s->Print();
-                      std::cout << '\n';
+                      if (PersonType::Worker == s->GetPersonType())
+                      {
+                          s->Print();
+                          std::cout << '\n';
+                      }
                   });
 }
 // void DataBase::GetAllStudentsWithSurname(std::vector<Student *> &foundStudents, const std::string &searchingSurname) //popr
