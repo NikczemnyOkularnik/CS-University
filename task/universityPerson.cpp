@@ -27,9 +27,3 @@ std::string UniversityPerson::GetGenderInString()
         break;
     }
 }
-/* Fruit::Fruit(const std::string &name, size_t amount, size_t basePrice,  Time *time, size_t expiry_date, size_t time_elapsed)
-        : Cargo(name, amount, basePrice, time)
-        , time_elapsed_(time_elapsed)
-        , expiry_date_(expiry_date)
-        {}
-    */

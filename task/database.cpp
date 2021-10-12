@@ -43,7 +43,7 @@ void DataBase::show_workers()
                       }
                   });
 }
-void DataBase::GetStudentsWithSurname(const std::string &searchingSurname) //popr
+void DataBase::GetStudentsWithSurname(const std::string &searchingSurname) 
 {
     std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
                   {
@@ -144,17 +144,43 @@ void DataBase::SortSurnames()
 //     }
 // }
 
-// void DataBase::DeleteByIndex(int deleteIndex)//poprawic
+//  void DataBase::DeleteByIndex(int deleteIndex)        //ONGOING
 // {
-//     for (size_t i = 0; i < person.size(); i++)
-//     {
-//         if (person[i]->GetIndex() == deleteIndex)
-//         {
-//             person.erase(person.begin() + i);
-//         }
-//     }
+//     std::for_each(person.begin(), person.end(), [deleteIndex](std::unique_ptr<UniversityPerson> &s)
+//                     {
+//                         if (PersonType::Student == s->GetPersonType())
+//                         {
+//                             if (s->GetIndex() == deleteIndex)
+//                         {
+//                             s.erase(s.begin() + i);
+//                         }
+//                     });
 // }
-// size_t DataBase::GetVectorSize()
+
+
+// if (PersonType::Student == s->GetPersonType())
+//                       {
+//                           if (s->GetSurname().compare(searchingSurname) == 0)
+//                           {
+//                               s->Print();
+//                               std::cout << '\n';
+//                           }
+//                       }
+// void DataBase::show_workers()
 // {
-//     return person.size();
-// }
+//     std::for_each(person.begin(), person.end(), [](std::unique_ptr<UniversityPerson> &s)
+//                   {
+//                       if (PersonType::Worker == s->GetPersonType())
+//                       {
+//                           s->Print();
+//                           std::cout << '\n';
+//                       }
+//                   });
+
+
+
+
+size_t DataBase::GetVectorSize()
+{
+    return person.size();
+}
