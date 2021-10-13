@@ -16,13 +16,17 @@ enum class PersonType{
 
 class UniversityPerson {
 protected:
+
     std::string name_;
     std::string surname_;
     std::string address_;
     int ID_;
     Gender gender_;
+    size_t money_;
+    int index_;
 
 public:
+
     std::string GetName() { return name_; }
     std::string GetSurname() { return surname_; }
     std::string GetAddress() { return address_; }
@@ -30,7 +34,8 @@ public:
     Gender GetGender() { return gender_; }
     virtual PersonType GetPersonType() {return PersonType::UniversityPerson;}
     std::string GetGenderInString();//  
-
+    virtual int GetMoney() {return 0;}
+    virtual int GetIndex() { return 0; }
 
     void SetName(const std::string& name) { name_ = name; }
     void SetSurname(const std::string& surname) { surname_ = surname; }

@@ -158,26 +158,6 @@ void DataBase::SortSurnames()
 // }
 
 
-// if (PersonType::Student == s->GetPersonType())
-//                       {
-//                           if (s->GetSurname().compare(searchingSurname) == 0)
-//                           {
-//                               s->Print();
-//                               std::cout << '\n';
-//                           }
-//                       }
-// void DataBase::show_workers()
-// {
-//     std::for_each(person.begin(), person.end(), [](std::unique_ptr<UniversityPerson> &s)
-//                   {
-//                       if (PersonType::Worker == s->GetPersonType())
-//                       {
-//                           s->Print();
-//                           std::cout << '\n';
-//                       }
-//                   });
-
-
 
 
 size_t DataBase::GetVectorSize()
