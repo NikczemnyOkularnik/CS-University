@@ -153,7 +153,7 @@ void DataBase::SortSurnames()
                         {
                             if (s->GetIndex() == deleteIndex)
                             {
-                                s.erase(s.begin() + it);
+                                person.erase(person.begin() + it);
                             }
                         }
                         it++;
