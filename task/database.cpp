@@ -144,18 +144,21 @@ void DataBase::SortSurnames()
 //     }
 // }
 
-//  void DataBase::DeleteByIndex(int deleteIndex)        //ONGOING
-// {
-//     std::for_each(person.begin(), person.end(), [deleteIndex](std::unique_ptr<UniversityPerson> &s)
-//                     {
-//                         if (PersonType::Student == s->GetPersonType())
-//                         {
-//                             if (s->GetIndex() == deleteIndex)
-//                         {
-//                             s.erase(s.begin() + i);
-//                         }
-//                     });
-// }
+ void DataBase::DeleteByIndex(int deleteIndex)        //ONGOING
+{
+    int it = 0;
+    std::for_each(person.begin(), person.end(), [deleteIndex, &it](std::unique_ptr<UniversityPerson> &s)
+                    {
+                        if (PersonType::Student == s->GetPersonType())
+                        {
+                            if (s->GetIndex() == deleteIndex)
+                            {
+                                s.erase(s.begin() + it);
+                            }
+                        }
+                        it++;
+                    });
+}
 
 
 
