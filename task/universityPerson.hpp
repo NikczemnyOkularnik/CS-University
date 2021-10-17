@@ -43,8 +43,7 @@ public:
 
     //ustawiam konstruktor klasy Person
     UniversityPerson(std::string name, std::string surname, std::string adr, int id, Gender gender);
-    UniversityPerson(std::string name, std::string surname, std::string adr, int id, Gender gender, int index);
-    UniversityPerson(std::string name, std::string surname, std::string adr, int id, Gender gender, size_t money);
+
      ~UniversityPerson(){};
 
     virtual void Print();

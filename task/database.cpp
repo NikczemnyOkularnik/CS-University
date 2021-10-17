@@ -131,23 +131,21 @@ void DataBase::SortSurnames()
 // void DataBase::SortStudentsID(std::vector<Student *> &sortID)
 // {
 //     std::cout << "Przed sortowaniem ID: " << "\n";
-
-//     for (Student *s : UniversityPerson)
-//     {
-//         sortID.push_back(s);
-//         s->Print();
-//         std::cout << "\n";
-//     }
+//     std::for_each(sortID.begin(), sortID.end(), [&](std::unique_ptr<UniversityPerson> &s)
+//                 {
+//                     s->Print();
+//                     std::cout << "\n";
+//                 });
 
 //     std::sort(sortID.begin(), sortID.end(), sortIDComparator());
 //     std::cout << "\n";
 //     std::cout << "Po sortowaniu ID: " << "\n";
 
-//     for (auto i : sortID)
+//     std::for_each(sortID.begin(), sortID.end(), [&](std::unique_ptr<UniversityPerson> &s)
 //     {
-//         i->Print();
+//         s->Print();
 //         std::cout << "\n";
-//     }
+//     });
 // }
 
 //  void DataBase::DeleteByIndex(int deleteIndex)        //ONGOING
