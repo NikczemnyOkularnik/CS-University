@@ -3,6 +3,7 @@
 
 class Student : public UniversityPerson
 {
+    int index_;
 public:
     int GetIndex() override { return index_; }
     void SetIndex(const int &index) { index_ = index; }

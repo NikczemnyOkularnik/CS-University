@@ -3,6 +3,7 @@
 
 class Worker : public UniversityPerson
 {
+    size_t money_;
     public:
     int GetMoney() override {return money_;}
     void SetMoney(size_t & money);

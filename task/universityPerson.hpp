@@ -22,8 +22,6 @@ protected:
     std::string address_;
     int ID_;
     Gender gender_;
-    size_t money_;
-    int index_;
 
 public:
 
@@ -35,7 +33,7 @@ public:
     virtual PersonType GetPersonType() {return PersonType::UniversityPerson;}
     std::string GetGenderInString();//  
     virtual int GetMoney() {return 0;}
-    virtual int GetIndex() { return 0; }
+    virtual int GetIndex() { return 0;}
 
     void SetName(const std::string& name) { name_ = name; }
     void SetSurname(const std::string& surname) { surname_ = surname; }
@@ -45,6 +43,8 @@ public:
 
     //ustawiam konstruktor klasy Person
     UniversityPerson(std::string name, std::string surname, std::string adr, int id, Gender gender);
+    UniversityPerson(std::string name, std::string surname, std::string adr, int id, Gender gender, int index);
+    UniversityPerson(std::string name, std::string surname, std::string adr, int id, Gender gender, size_t money);
      ~UniversityPerson(){};
 
     virtual void Print();

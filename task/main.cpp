@@ -91,8 +91,8 @@ int main()
 
     DataBase *db = new DataBase(); 
     auto student1 = std::make_unique<Student>("Stanisław", "ANowak", "Warszawa", 1, Gender::Male, 215);
-    auto student2 = std::make_unique<Student>("Stanisław", "VNowak", "Warszawa", 1, Gender::Male, 215);
-    auto student3 = std::make_unique<Student>("Grzegorz", "Kwak", "Warszawa", 2, Gender::Male, 215);
+    auto student2 = std::make_unique<Student>("Stanisław", "VNowak", "Warszawa", 1, Gender::Male, 214);
+    auto student3 = std::make_unique<Student>("Grzegorz", "Kwak", "Warszawa", 2, Gender::Male, 216);
     auto worker1 = std::make_unique<Worker>("Stasiu", "CNowak", "kwik", 15,Gender::Male, 2300);
     db->add_student(student1);
     db->add_student(student2);
@@ -100,6 +100,8 @@ int main()
     db->add_worker(worker1);
 
     db->SortSurnames();
+    // db->DeleteByIndex(2);
+    // db->show_students();
 
     return(0);
 }
