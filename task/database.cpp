@@ -58,21 +58,22 @@ void DataBase::GetStudentsWithSurname(const std::string &searchingSurname)
                   });
 }
 
-//  std::unique_ptr<UniversityPerson> DataBase::GetStudentViaID(const int &searchingID)
-// {
-//     std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
-//                   {
-//                       if (PersonType::Student == s->GetPersonType())
-//                       {
-//                           if (s->GetID() == searchingID)
-//                           {
-//                               return &s;
-//                           }
-//                       }
-//                       return &s;
-//                   });
-//     return nullptr;
-// }
+ std::unique_ptr<UniversityPerson> DataBase::GetStudentViaID(const int &searchingID)
+{
+    std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
+                  {
+                      if (PersonType::Student == s->GetPersonType())
+                      {
+                          if (s->GetID() == searchingID)
+                          {
+                              std::cout << searchingID;
+                              return &s;
+                          }
+                      } 
+                      //<----------------------------------------- What should we return here??
+                  });
+    return nullptr;
+}
 
 // void DataBase::ID(int a)
 // {
@@ -147,20 +148,19 @@ void DataBase::SortSurnames()
 //  void DataBase::DeleteByIndex(int deleteIndex)        //ONGOING
 // {
 //     int it = 0;
-//     std::for_each(person.begin(), person.end(), [deleteIndex, &it](std::unique_ptr<UniversityPerson> &s)
+//     std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> & s)
 //                     {
 //                         if (PersonType::Student == s->GetPersonType())
 //                         {
 //                             if (s->GetIndex() == deleteIndex)
 //                             {
 //                                 person.erase(person.begin() + it);
+//                                 //person.erase(std::distance(person.begin(), it));
 //                             }
 //                         }
 //                         it++;
 //                     });
 // }
-
-
 
 
 size_t DataBase::GetVectorSize()
