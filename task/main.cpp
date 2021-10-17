@@ -100,5 +100,6 @@ int main()
     db->add_worker(worker1);
 
     db->show_students();
+    db->ID(2);
     return (0);
 }

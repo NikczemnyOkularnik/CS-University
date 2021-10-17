@@ -2,6 +2,7 @@
 
 void UniversityPerson::Print()
 {
+    std::cout << "wchodzisz?";
     std::cout << "Imie: " << name_ << " Nazwisko: " << surname_ << " PESEL: " << ID_ << " Płeć: " << GetGenderInString() << " adres: " << address_;
     std::cout << '\n';
 }

@@ -43,7 +43,7 @@ void DataBase::show_workers()
                       }
                   });
 }
-void DataBase::GetStudentsWithSurname(const std::string &searchingSurname) 
+void DataBase::GetStudentsWithSurname(const std::string &searchingSurname)
 {
     std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
                   {
@@ -58,7 +58,7 @@ void DataBase::GetStudentsWithSurname(const std::string &searchingSurname)
                   });
 }
 
- std::unique_ptr<UniversityPerson> DataBase::GetStudentViaID(const int &searchingID)
+std::unique_ptr<UniversityPerson> DataBase::GetStudentViaID(const int &searchingID)
 {
     std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
                   {
@@ -69,41 +69,46 @@ void DataBase::GetStudentsWithSurname(const std::string &searchingSurname)
                               std::cout << searchingID;
                               return &s;
                           }
-                      } 
+                      }
                       //<----------------------------------------- What should we return here??
                   });
-    return nullptr;
 }
 
-// void DataBase::ID(int a)
-// {
-//     std::vector<int> check;
+void DataBase::ID(int a)
+{
+    std::find_if(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &per) {
+        if(per-> GetID() == a)
+        {
+            per->Print();
+            return a;
+        }
+    });
+    //std::vector<int> check;
+    // for (auto &l : person)
+    // {
+    //     check.push_back(l->GetID());
+    // }
 
-//     for (auto l : person)
-//     {
-//         check.push_back(l->GetID());
-//     }
+    // std::cout << "\n";
 
-//     std::cout << "\n";
+    // for (auto k : check)
+    // {
+    //     if (k == a)
+    //     {
+    //         std::cout << "Istnieje student z podanym ID: " << a << "\n";
+    //         auto test = GetStudentViaID(a);
+    //         test->Print();
+    //         return;
+    //     }
+    // }
+    // std::cout << "Brak ID " << a << " w bazie danych. Obecne ID w bazie danych: "
+    //           << "\n";
 
-//     for (auto k : check)
-//     {
-//         if (k == a)
-//         {
-//             std::cout << "Istnieje student z podanym ID: " << a << "\n";
-//             Student *test = GetStudentViaID(a);
-//             test->Print();
-//             return;
-//         }
-//     }
-//     std::cout << "Brak ID " << a << " w bazie danych. Obecne ID w bazie danych: " << "\n";
-
-//     for (auto k : check)
-//     {
-//        std::cout << k << ", ";
-//     }
-
-// }
+    // for (auto k : check)
+    // {
+    //     std::cout << k << ", ";
+    // }
+}
 
 void DataBase::SortSurnames()
 {
@@ -161,7 +166,6 @@ void DataBase::SortSurnames()
 //                         it++;
 //                     });
 // }
-
 
 size_t DataBase::GetVectorSize()
 {
