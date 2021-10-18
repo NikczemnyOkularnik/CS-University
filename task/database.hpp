@@ -19,7 +19,7 @@ public:
     std::unique_ptr<UniversityPerson> GetStudentViaID(const int &searchingID); 
     void SortSurnames();
     void SortSalary();
-    void SortStudentsID(std::vector<Student *> &sortID);
+    void SortID();
     void DeleteByIndex(int);
     void ID(int);
     size_t GetVectorSize();

@@ -130,25 +130,24 @@ void DataBase::SortSalary()
                   });
 }
 
-// void DataBase::SortStudentsID(std::vector<Student *> &sortID)
-// {
-//     std::cout << "Przed sortowaniem ID: " << "\n";
-//     std::for_each(sortID.begin(), sortID.end(), [&](std::unique_ptr<UniversityPerson> &s)
-//                 {
-//                     s->Print();
-//                     std::cout << "\n";
-//                 });
+void DataBase::SortID()
+{
+    std::cout << "Przed sortowaniem ID: " << "\n";
+    std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
+                {
+                    s->Print();
+                    std::cout << "\n";
+                });
+    std::cout << "\n";
+    std::cout << "Po sortowaniu ID: " << "\n";
+    std::sort(person.begin(), person.end(), sortIDComparator());
 
-//     std::sort(sortID.begin(), sortID.end(), sortIDComparator());
-//     std::cout << "\n";
-//     std::cout << "Po sortowaniu ID: " << "\n";
-
-//     std::for_each(sortID.begin(), sortID.end(), [&](std::unique_ptr<UniversityPerson> &s)
-//     {
-//         s->Print();
-//         std::cout << "\n";
-//     });
-// }
+    std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
+                {
+                    s->Print();
+                    std::cout << "\n";
+                });
+}
 
 //  void DataBase::DeleteByIndex(int deleteIndex)        //ONGOING
 // {
