@@ -76,39 +76,22 @@ std::unique_ptr<UniversityPerson> DataBase::GetStudentViaID(const int &searching
 
 void DataBase::ID(int a)
 {
-    std::find_if(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &per)
-                 {
-                     if (per->GetID() == a)
-                     {
-                         per->Print();
-                         return a;
-                     }
-                 });
-    //std::vector<int> check;
-    // for (auto &l : person)
-    // {
-    //     check.push_back(l->GetID());
-    // }
-
-    // std::cout << "\n";
-
-    // for (auto k : check)
-    // {
-    //     if (k == a)
-    //     {
-    //         std::cout << "Istnieje student z podanym ID: " << a << "\n";
-    //         auto test = GetStudentViaID(a);
-    //         test->Print();
-    //         return;
-    //     }
-    // }
-    // std::cout << "Brak ID " << a << " w bazie danych. Obecne ID w bazie danych: "
-    //           << "\n";
-
-    // for (auto k : check)
-    // {
-    //     std::cout << k << ", ";
-    // }
+    auto IDCheck = std::find_if(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &per)
+                                {
+                                    if (per->GetID() == a)
+                                    {
+                                        std::cout << "Istnieje student z podanym ID: " << a << "\n";
+                                        per->Print();
+                                    }
+                                    return (per->GetID() == a);
+                                });
+                                
+    if (IDCheck == person.end())
+    {
+        std::cout << '\n';
+        std::cout << "Brak ID " << a << " w bazie danych. Obecne ID w bazie danych: " << '\n';
+        show_students();
+    }
 }
 
 void DataBase::SortSurnames()
@@ -138,10 +121,8 @@ void DataBase::SortSalary()
                   });
     std::cout << '\n';
     std::cout << "Po sortowaniu pieniążka";
-    std::sort(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s, std::unique_ptr<UniversityPerson> & w) {
-        return (s->GetMoney() > w ->GetMoney());
-
-    });
+    std::sort(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s, std::unique_ptr<UniversityPerson> &w)
+              { return (s->GetMoney() > w->GetMoney()); });
     std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
                   {
                       s->Print();
