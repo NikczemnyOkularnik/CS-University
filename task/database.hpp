@@ -18,6 +18,7 @@ public:
     void GetStudentsWithSurname(const std::string &searchingSurname); 
     std::unique_ptr<UniversityPerson> GetStudentViaID(const int &searchingID); 
     void SortSurnames();
+    void SortSalary();
     void SortStudentsID(std::vector<Student *> &sortID);
     void DeleteByIndex(int);
     void ID(int);
