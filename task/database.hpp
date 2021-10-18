@@ -37,7 +37,7 @@ struct sortSurnamesComparator
 };
 struct sortIDComparator
 {
-    inline bool operator()(Student *s1, Student *s2)
+    inline bool operator()(std::unique_ptr<UniversityPerson> & s1, std::unique_ptr<UniversityPerson> & s2)
     {
         return (s1->GetID() < s2->GetID());
     }

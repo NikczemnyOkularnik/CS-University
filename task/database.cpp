@@ -149,22 +149,22 @@ void DataBase::SortID()
                 });
 }
 
-//  void DataBase::DeleteByIndex(int deleteIndex)        //ONGOING
-// {
-//     int it = 0;
-//     std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> & s)
-//                     {
-//                         if (PersonType::Student == s->GetPersonType())
-//                         {
-//                             if (s->GetIndex() == deleteIndex)
-//                             {
-//                                 person.erase(person.begin() + it);
-//                                 //person.erase(std::distance(person.begin(), it));
-//                             }
-//                         }
-//                         it++;
-//                     });
-// }
+ void DataBase::DeleteByIndex(int deleteIndex) 
+{
+    int it = 0;
+    std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> & s)
+                    {
+                        if (PersonType::Student == s->GetPersonType())
+                        {
+                            if (s->GetIndex() == deleteIndex)
+                            {
+                                person.erase(person.begin() + it);
+                                //person.erase(std::distance(person.begin(), it));
+                            }
+                        }
+                        it++;
+                    });
+}
 
 size_t DataBase::GetVectorSize()
 {
