@@ -2,6 +2,8 @@
 #include "catch_amalgamated.hpp"
 #include "../student.hpp"
 #include "../database.hpp"
+#include "../worker.hpp"
+#include "../universityPerson.hpp"
 
 // SCENARIO( "vectors can be sized and resized", "[vector]" ) {
 
@@ -51,33 +53,41 @@ SCENARIO("Adding new students to database")
     {
         DataBase *db = new DataBase();
 
-        Student *s = new Student("Stanisław", "Nowak", "Warszawa", 12, 215, Gender::Male);
-        Student *s1 = new Student("Kasia", "Adamiec", "Warszawa", 144, 2145, Gender::Female);
-        Student *s2 = new Student("Zuza", "Kowalska", "Wrocław", 1, 2115, Gender::Female);
-        db->add_student(s);
-        db->add_student(s1);
-        db->add_student(s2);
-        REQUIRE(db->GetVectorSize() == 3);
+        auto student1 = std::make_unique<Student>("Stanisław", "Nowak", "Szczecin", 12, Gender::Male, 215);
+        auto student2 = std::make_unique<Student>("Kasia", "Adamiec", "Warszawa", 144, Gender::Female, 2145);
+        auto student3 = std::make_unique<Student>("Zuza", "Kowalska", "Wrocław", 1, Gender::Female, 2115);
+        auto worker1 = std::make_unique<Worker>("Grzegorz", "Kwak", "Gdańsk", 2, Gender::Male, 2300);
+        auto worker2 = std::make_unique<Worker>("Krzysztof", "Balonik", "Radom", 15, Gender::Male, 2500);
+        auto worker3 = std::make_unique<Worker>("Grażyna", "Marek", "Sosonowiec", 15, Gender::Other, 2700);
+
+        db->add_student(student1);
+        db->add_student(student2);
+        db->add_student(student3);
+        db->add_worker(worker1);
+        db->add_worker(worker2);
+        db->add_worker(worker3);
+
+        REQUIRE(db->GetVectorSize() == 6);
 
         WHEN("Find student with surname Nowak")
         {
-            std::vector<Student *> studentsWithSameSurname;
-            db->GetAllStudentsWithSurname(studentsWithSameSurname, "Nowak");
+            std::vector<std::unique_ptr<UniversityPerson>> sameSurname;
+            db->GetStudentsWithSurname("Nowak");
             THEN("vector contains Nowak")
             {
-                REQUIRE(studentsWithSameSurname.size());
-                auto Surname0 = studentsWithSameSurname[0];
+                REQUIRE(sameSurname.size());
+                auto Surname0 = sameSurname[0];
                 CHECK(Surname0->GetSurname() == "Nowak");
             }
         }
         WHEN("Sort students by surname")
         {
-            std::vector<Student *> studentsSortedSurnames;
-            db->SortStudentsSurnames(studentsSortedSurnames);
+            std::vector<std::unique_ptr<UniversityPerson>> sortSurname;
+            db->SortSurnames();
             THEN("Surnames should be sorted alphabetically")
             {
-                REQUIRE(studentsSortedSurnames.size());
-                auto Surname0 = studentsSortedSurnames[0];
+                REQUIRE(sortSurname.size());
+                auto Surname0 = sortSurname[0];
                 CHECK(Surname0->GetSurname() == "Adamiec");
             }
         }
@@ -85,7 +95,7 @@ SCENARIO("Adding new students to database")
         WHEN("Sort students by ID number")
         {
             std::vector<Student *> studentsSortedID;
-            db->SortStudentsID(studentsSortedID);
+            db->SortID();
             THEN("ID numbers should be sorted from smallest to the biggest")
             {
                 REQUIRE(studentsSortedID.size());
@@ -110,23 +120,31 @@ SCENARIO("Checking getters for database")
     {
         DataBase *db = new DataBase();
 
-        Student *s = new Student("Stanisław", "Nowak", "Poznań", 12, 215, Gender::Male);
-        Student *s1 = new Student("Kasia", "Adamiec", "Warszawa", 144, 2145, Gender::Female);
-        Student *s2 = new Student("Zuza", "Kowalska", "Wrocław", 1, 2115, Gender::Female);
-        Student *s3 = new Student("Karol", "Biskup", "Gdańsk", 37, 2117, Gender::Male);
-        db->add_student(s);
-        db->add_student(s1);
-        db->add_student(s2);
-        db->add_student(s3);
-        REQUIRE(db->GetVectorSize() == 4);
+        auto student1 = std::make_unique<Student>("Stanisław", "Nowak", "Szczecin", 12, Gender::Male, 215);
+        auto student2 = std::make_unique<Student>("Kasia", "Adamiec", "Warszawa", 144, Gender::Female, 2145);
+        auto student3 = std::make_unique<Student>("Zuza", "Kowalska", "Wrocław", 1, Gender::Female, 2115);
+        auto student4 = std::make_unique<Student>("Karol", "Biskup", "Gdańsk", 37, Gender::Male, 2117);
+        auto worker1 = std::make_unique<Worker>("Grzegorz", "Kwak", "Gdańsk", 2, Gender::Male, 2300);
+        auto worker2 = std::make_unique<Worker>("Krzysztof", "Balonik", "Radom", 15, Gender::Male, 2500);
+        auto worker3 = std::make_unique<Worker>("Grażyna", "Marek", "Sosonowiec", 15, Gender::Other, 2700);
 
-        std::vector<Student *> students;
-        db->SortStudentsSurnames(students);
+        db->add_student(student1);
+        db->add_student(student2);
+        db->add_student(student3);
+        db->add_student(student4);
+        db->add_worker(worker1);
+        db->add_worker(worker2);
+        db->add_worker(worker3);
+
+        REQUIRE(db->GetVectorSize() == 7);
+
+        std::vector<std::unique_ptr<UniversityPerson>> people;
+        db->SortSurnames();
         WHEN("GetSurname")
         {
             THEN("vector contains Adamiec")
             {
-                auto Surname0 = students[0];
+                auto Surname0 = people[1];
                 CHECK(Surname0->GetSurname() == "Adamiec");
             }
         }
@@ -134,7 +152,7 @@ SCENARIO("Checking getters for database")
         {
             THEN("Vector contains name Kasia")
             {
-                auto Name0 = students[0];
+                auto Name0 = people[1];
                 CHECK(Name0->GetName() == "Kasia");
             }
         }
@@ -142,7 +160,7 @@ SCENARIO("Checking getters for database")
         {
             THEN("Vector contains Gdańsk")
             {
-                auto Address0 = students[1];
+                auto Address0 = people[3];
                 CHECK(Address0->GetAddress() == "Gdańsk");
             }
         }
@@ -150,7 +168,7 @@ SCENARIO("Checking getters for database")
         {
             THEN("Vector contains 144")
             {
-                auto ID0 = students[0];
+                auto ID0 = people[1];
                 CHECK(ID0->GetID() == 144);
             }
         }
@@ -158,7 +176,7 @@ SCENARIO("Checking getters for database")
         {
             THEN("Vector contains 2145")
             {
-                auto Index0 = students[0];
+                auto Index0 = people[1];
                 CHECK(Index0->GetIndex() == 2145);
             }
         }
@@ -166,8 +184,8 @@ SCENARIO("Checking getters for database")
         {
             THEN("Vector contains Gender")
             {
-                auto Gender0 = students[0];
-                auto Gender1 = students[1];
+                auto Gender0 = people[1];
+                auto Gender1 = people[0];
                 CHECK(Gender0->GetGenderInString() == "Dziewczyna");
                 CHECK(Gender1->GetGenderInString() == "Chłopak");
             }
