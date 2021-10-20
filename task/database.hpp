@@ -22,7 +22,7 @@ public:
     void SortID();
     void DeleteByIndex(int);
     void ID(int);
-    size_t GetVectorSize();
+    void GetDBCapacity();
     ~DataBase();
     //std::unique_ptr<UniversityPerson> p1 = std::make_unique<Student>;
     //std::unique_ptr<UniversityPerson> p2 = std::make_unique<Worker>;

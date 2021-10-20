@@ -154,21 +154,29 @@ void DataBase::SortID()
  void DataBase::DeleteByIndex(int deleteIndex) 
 {
     int it = 0;
-    std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> & s)
-                    {
-                        if (PersonType::Student == s->GetPersonType())
-                        {
-                            if (s->GetIndex() == deleteIndex)
-                            {
-                                person.erase(person.begin() + it);
-                                //person.erase(std::distance(person.begin(), it));
-                            }
-                        }
-                        it++;
-                    });
+    // std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> & s)
+    //                 {
+    //                     if (PersonType::Student == s->GetPersonType())
+    //                     {
+    //                         if (s->GetIndex() == deleteIndex)
+    //                         {
+    //                             person.erase(person.begin() + it);
+    //                             //person.erase(std::distance(person.begin(), it));
+    //                         }
+    //                     }
+    //                     it++;
+    //                 });
+    auto index_to_delete = std::find_if(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> & s)
+    {
+        return(s->GetIndex() == deleteIndex);
+    });
+    if( index_to_delete != person.end() )
+    {
+        person.erase(index_to_delete);
+    }
 }
 
-size_t DataBase::GetVectorSize()
+void DataBase::GetDBCapacity()
 {
-    return person.size();
+    std::cout << person.capacity();
 }

@@ -103,5 +103,8 @@ int main()
     db->add_worker(worker2);
     db->add_worker(worker3);
 
+    db->show_students();
+    db->DeleteByIndex(214);
+    db->show_students();
     return (0);
 }
