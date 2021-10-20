@@ -58,22 +58,22 @@ void DataBase::GetStudentsWithSurname(const std::string &searchingSurname)
                   });
 }
 
-void DataBase::GetStudentViaID(bool& found, const int& searchingID, std::unique_ptr<UniversityPerson>& resultPerson)
-{ 
-	found = false;
- 
-	std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson>& s)
-		{
-			if (PersonType::Student == s->GetPersonType())
-			{
-				if (s->GetID() == searchingID)
-				{
-					resultPerson = std::move(s);
-					found = true;
-					return;
-				}
-			}
-		});
+void DataBase::GetStudentViaID(bool &found, const int &searchingID, std::unique_ptr<UniversityPerson> &resultPerson)
+{
+    found = false;
+
+    std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
+                  {
+                      if (PersonType::Student == s->GetPersonType())
+                      {
+                          if (s->GetID() == searchingID)
+                          {
+                              resultPerson = std::move(s);
+                              found = true;
+                              return;
+                          }
+                      }
+                  });
 }
 
 void DataBase::ID(int a)
@@ -87,7 +87,7 @@ void DataBase::ID(int a)
                                     }
                                     return (per->GetID() == a);
                                 });
-                                
+
     if (IDCheck == person.end())
     {
         std::cout << '\n';
@@ -134,49 +134,49 @@ void DataBase::SortSalary()
 
 void DataBase::SortID()
 {
-    std::cout << "Przed sortowaniem ID: " << "\n";
+    std::cout << "Przed sortowaniem ID: "
+              << "\n";
     std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
-                {
-                    s->Print();
-                    std::cout << "\n";
-                });
+                  {
+                      s->Print();
+                      std::cout << "\n";
+                  });
     std::cout << "\n";
-    std::cout << "Po sortowaniu ID: " << "\n";
+    std::cout << "Po sortowaniu ID: "
+              << "\n";
     std::sort(person.begin(), person.end(), sortIDComparator());
 
     std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
-                {
-                    s->Print();
-                    std::cout << "\n";
-                });
+                  {
+                      s->Print();
+                      std::cout << "\n";
+                  });
 }
 
- void DataBase::DeleteByIndex(int deleteIndex) 
+void DataBase::DeleteByIndex(int deleteIndex)
 {
-    int it = 0;
-    // std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> & s)
-    //                 {
-    //                     if (PersonType::Student == s->GetPersonType())
-    //                     {
-    //                         if (s->GetIndex() == deleteIndex)
-    //                         {
-    //                             person.erase(person.begin() + it);
-    //                             //person.erase(std::distance(person.begin(), it));
-    //                         }
-    //                     }
-    //                     it++;
-    //                 });
-    auto index_to_delete = std::find_if(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> & s)
-    {
-        return(s->GetIndex() == deleteIndex);
-    });
-    if( index_to_delete != person.end() )
+    auto index_to_delete = std::find_if(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
+                                        { return (s->GetIndex() == deleteIndex); });
+    if (index_to_delete != person.end())
     {
         person.erase(index_to_delete);
+        person.shrink_to_fit();
     }
 }
 
 void DataBase::GetDBCapacity()
 {
     std::cout << person.capacity();
+}
+
+void DataBase::earning_modification(const int ID, const int newSalary)
+{
+    auto personEarning = std::find_if(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
+                                      { return (s->GetID() == ID); });
+    if(person[(std::distance(person.begin(), personEarning))]->GetPersonType() == PersonType::Worker)
+    {
+        person[(std::distance(person.begin(), personEarning))]->SetMoney(newSalary);
+    }
+
+
 }

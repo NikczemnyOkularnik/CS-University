@@ -15,6 +15,7 @@ public:
     void show_database();
     void show_students();
     void show_workers();
+    void earning_modification(int, int); 
     void GetStudentsWithSurname(const std::string &searchingSurname); 
     void GetStudentViaID(bool& found, const int& searchingID, std::unique_ptr<UniversityPerson>& resultPerson);
     void SortSurnames();
@@ -24,8 +25,6 @@ public:
     void ID(int);
     void GetDBCapacity();
     ~DataBase();
-    //std::unique_ptr<UniversityPerson> p1 = std::make_unique<Student>;
-    //std::unique_ptr<UniversityPerson> p2 = std::make_unique<Worker>;
 
 };
 struct sortSurnamesComparator

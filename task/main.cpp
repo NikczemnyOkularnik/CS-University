@@ -83,28 +83,6 @@ int main()
 
 int main()
 {
-    // DataBase *db = new DataBase();
-    // Generator* g = new Generator();
-    // //std::vector<std::unique_ptr<UniversityPerson>> person;
 
-    // g->GeneratePersonel(10, 2, db->person);
-
-    DataBase *db = new DataBase();
-    auto student1 = std::make_unique<Student>("Stanisław", "ANowak", "Warszawa", 1, Gender::Male, 215);
-    auto student2 = std::make_unique<Student>("Stanisław", "VNowak", "Warszawa", 3, Gender::Male, 214);
-    auto student3 = std::make_unique<Student>("Grzegorz", "Kwak", "Warszawa", 2, Gender::Male, 216);
-    auto worker1 = std::make_unique<Worker>("Stasiu", "CNowak", "kwik", 15, Gender::Male, 2300);
-    auto worker2 = std::make_unique<Worker>("Stasiu", "CNowak", "kwik", 15, Gender::Male, 2500);
-    auto worker3 = std::make_unique<Worker>("Stasiu", "CNowak", "kwik", 15, Gender::Male, 2700);
-    db->add_student(student1);
-    db->add_student(student2);
-    db->add_student(student3);
-    db->add_worker(worker1);
-    db->add_worker(worker2);
-    db->add_worker(worker3);
-
-    db->show_students();
-    db->DeleteByIndex(214);
-    db->show_students();
     return (0);
 }

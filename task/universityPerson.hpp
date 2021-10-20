@@ -40,11 +40,11 @@ public:
     void SetAddress(const std::string& address) { address_ = address; }
     void SetID(const int& ID) { ID_ = ID; }
     void SetGender(const Gender& gender) { gender_ = gender; }
+    virtual void SetMoney(size_t money){money = 0;}
 
     //ustawiam konstruktor klasy Person
     UniversityPerson(std::string name, std::string surname, std::string adr, int id, Gender gender);
 
-     ~UniversityPerson(){};
 
     virtual void Print();
 };
