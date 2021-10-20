@@ -1,9 +1,14 @@
 #include "database.hpp"
+#include "generator.hpp"
 #include <algorithm>
 #include <iostream>
 #include <vector>
 #include <typeinfo>
-
+DataBase::DataBase()
+{
+    Generator* g = new Generator();
+    g->GeneratePersonel(30, 5, person);
+}
 void DataBase::add_student(std::unique_ptr<Student> &St)
 {
     person.emplace_back(std::move(St));

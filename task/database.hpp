@@ -24,6 +24,7 @@ public:
     void DeleteByIndex(int);
     void ID(int);
     void GetDBCapacity();
+    DataBase();
     ~DataBase();
 
 };

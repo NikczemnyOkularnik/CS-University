@@ -9,6 +9,7 @@
 
 int main()
 {
-
+    DataBase *db = new DataBase();
+    db->show_workers();
     return (0);
 }
