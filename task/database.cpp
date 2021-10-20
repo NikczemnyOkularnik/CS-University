@@ -58,20 +58,22 @@ void DataBase::GetStudentsWithSurname(const std::string &searchingSurname)
                   });
 }
 
-std::unique_ptr<UniversityPerson> DataBase::GetStudentViaID(const int &searchingID)
-{
-    std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
-                  {
-                      if (PersonType::Student == s->GetPersonType())
-                      {
-                          if (s->GetID() == searchingID)
-                          {
-                              std::cout << searchingID;
-                              return &s;
-                          }
-                      }
-                      //<----------------------------------------- What should we return here??
-                  });
+void DataBase::GetStudentViaID(bool& found, const int& searchingID, std::unique_ptr<UniversityPerson>& resultPerson)
+{ 
+	found = false;
+ 
+	std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson>& s)
+		{
+			if (PersonType::Student == s->GetPersonType())
+			{
+				if (s->GetID() == searchingID)
+				{
+					resultPerson = std::move(s);
+					found = true;
+					return;
+				}
+			}
+		});
 }
 
 void DataBase::ID(int a)

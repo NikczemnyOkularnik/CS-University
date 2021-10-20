@@ -16,7 +16,7 @@ public:
     void show_students();
     void show_workers();
     void GetStudentsWithSurname(const std::string &searchingSurname); 
-    std::unique_ptr<UniversityPerson> GetStudentViaID(const int &searchingID); 
+    void GetStudentViaID(bool& found, const int& searchingID, std::unique_ptr<UniversityPerson>& resultPerson);
     void SortSurnames();
     void SortSalary();
     void SortID();

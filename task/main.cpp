@@ -103,8 +103,5 @@ int main()
     db->add_worker(worker2);
     db->add_worker(worker3);
 
-    db->ID(1);
-    db->ID(78);
-
     return (0);
 }
