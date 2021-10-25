@@ -32,7 +32,7 @@ public:
     Gender GetGender() { return gender_; }
     virtual PersonType GetPersonType() {return PersonType::UniversityPerson;}
     std::string GetGenderInString();//  
-    virtual int GetMoney() {return 0;}
+    virtual size_t GetMoney() {return 0;}
     virtual int GetIndex() { return 0;}
 
     void SetName(const std::string& name) { name_ = name; }

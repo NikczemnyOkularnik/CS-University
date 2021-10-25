@@ -6,8 +6,8 @@
 #include <typeinfo>
 DataBase::DataBase()
 {
-    Generator* g = new Generator();
-    g->GeneratePersonel(30, 5, person);
+    // Generator *g = new Generator();
+    // g->GeneratePersonel(30, 5, person);
 }
 void DataBase::add_student(std::unique_ptr<Student> &St)
 {
@@ -100,7 +100,16 @@ void DataBase::ID(int a)
         show_students();
     }
 }
+bool DataBase::CheckID(int ID)
+{
+    auto position = std::find_if(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &per)
+                         {
+                             return (per->GetID() == ID);
+                         });
 
+    auto IDposition = std::distance(person.begin(), position);
+    return (person[IDposition]->GetID() == ID);
+}
 void DataBase::SortSurnames()
 {
     std::cout << "Przed sortowaniem nazwisk: " << '\n';
@@ -178,10 +187,10 @@ void DataBase::earning_modification(const int ID, const int newSalary)
 {
     auto personEarning = std::find_if(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
                                       { return (s->GetID() == ID); });
-    if(person[(std::distance(person.begin(), personEarning))]->GetPersonType() == PersonType::Worker)
+
+    auto personPosition = std::distance(person.begin(), personEarning);
+    if (person[personPosition]->GetPersonType() == PersonType::Worker)
     {
-        person[(std::distance(person.begin(), personEarning))]->SetMoney(newSalary);
+        person[personPosition]->SetMoney(newSalary);
     }
-
-
 }

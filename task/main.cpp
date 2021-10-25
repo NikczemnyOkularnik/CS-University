@@ -11,5 +11,7 @@ int main()
 {
     DataBase *db = new DataBase();
     db->show_workers();
+    bool found = false;
+    
     return (0);
 }

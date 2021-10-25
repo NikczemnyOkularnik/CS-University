@@ -67,7 +67,7 @@ SCENARIO("Adding new students to database")
         db->add_worker(worker2);
         db->add_worker(worker3);
 
-        REQUIRE(db->GetVectorSize() == 6);
+        REQUIRE(db->getDbSize() == 6);
 
         WHEN("Find student with surname Nowak")
         {
@@ -76,7 +76,7 @@ SCENARIO("Adding new students to database")
             THEN("vector contains Nowak")
             {
                 REQUIRE(sameSurname.size());
-                auto Surname0 = sameSurname[0];
+                auto & Surname0 = sameSurname[0];
                 CHECK(Surname0->GetSurname() == "Nowak");
             }
         }
@@ -87,7 +87,7 @@ SCENARIO("Adding new students to database")
             THEN("Surnames should be sorted alphabetically")
             {
                 REQUIRE(sortSurname.size());
-                auto Surname0 = sortSurname[0];
+                auto & Surname0 = sortSurname[0];
                 CHECK(Surname0->GetSurname() == "Adamiec");
             }
         }
@@ -108,7 +108,7 @@ SCENARIO("Adding new students to database")
             db->DeleteByIndex(215);
             THEN("Student should be erased from db vector by using ID")
             {
-                REQUIRE(db->GetStudentViaID(215) == nullptr);
+                REQUIRE(db->CheckID(215) == false);
             }
         }
     }
@@ -136,7 +136,7 @@ SCENARIO("Checking getters for database")
         db->add_worker(worker2);
         db->add_worker(worker3);
 
-        REQUIRE(db->GetVectorSize() == 7);
+        REQUIRE(db->getDbSize() == 7);
 
         std::vector<std::unique_ptr<UniversityPerson>> people;
         db->SortSurnames();
@@ -144,7 +144,7 @@ SCENARIO("Checking getters for database")
         {
             THEN("vector contains Adamiec")
             {
-                auto Surname0 = people[1];
+                auto & Surname0 = people[1];
                 CHECK(Surname0->GetSurname() == "Adamiec");
             }
         }
@@ -152,7 +152,7 @@ SCENARIO("Checking getters for database")
         {
             THEN("Vector contains name Kasia")
             {
-                auto Name0 = people[1];
+                auto & Name0 = people[1];
                 CHECK(Name0->GetName() == "Kasia");
             }
         }
@@ -160,7 +160,7 @@ SCENARIO("Checking getters for database")
         {
             THEN("Vector contains Gdańsk")
             {
-                auto Address0 = people[3];
+                auto & Address0 = people[3];
                 CHECK(Address0->GetAddress() == "Gdańsk");
             }
         }
@@ -168,7 +168,7 @@ SCENARIO("Checking getters for database")
         {
             THEN("Vector contains 144")
             {
-                auto ID0 = people[1];
+                auto & ID0 = people[1];
                 CHECK(ID0->GetID() == 144);
             }
         }
@@ -176,7 +176,7 @@ SCENARIO("Checking getters for database")
         {
             THEN("Vector contains 2145")
             {
-                auto Index0 = people[1];
+                auto & Index0 = people[1];
                 CHECK(Index0->GetIndex() == 2145);
             }
         }
@@ -184,8 +184,8 @@ SCENARIO("Checking getters for database")
         {
             THEN("Vector contains Gender")
             {
-                auto Gender0 = people[1];
-                auto Gender1 = people[0];
+                auto & Gender0 = people[1];
+                auto & Gender1 = people[0];
                 CHECK(Gender0->GetGenderInString() == "Dziewczyna");
                 CHECK(Gender1->GetGenderInString() == "Chłopak");
             }
