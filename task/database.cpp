@@ -72,19 +72,6 @@ std::ptrdiff_t DataBase::GetStudentViaID(const int &searchingID)
     std::cout << person[personPosition] -> GetID();
     return personPosition;
 
-    // found = false;
-    // std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
-    //               {
-    //                   if (PersonType::Student == s->GetPersonType())
-    //                   {
-    //                       if (s->GetID() == searchingID)
-    //                       {
-    //                           resultPerson = std::move(s);
-    //                           found = true;
-    //                           return;
-    //                       }
-    //                   }
-    //               });
 }
 
 void DataBase::ID(int a)
@@ -112,7 +99,14 @@ bool DataBase::CheckID(int ID)
                                  { return (per->GetID() == ID); });
 
     auto IDposition = std::distance(person.begin(), position);
-    return (person[IDposition]->GetID() == ID);
+    if(position == person.end())
+    {
+        return false;
+    }
+    else
+    {
+        return (person[IDposition]->GetID() == ID);
+    }
 }
 void DataBase::SortSurnames()
 {
@@ -133,14 +127,16 @@ void DataBase::SortSurnames()
 }
 void DataBase::SortSalary()
 {
-    std::cout << "Przed sortowaniem pieniążka";
+    std::cout << "Przed sortowaniem pieniążka: "
+              << "\n";
     std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
                   {
                       s->Print();
                       std::cout << "\n";
                   });
     std::cout << '\n';
-    std::cout << "Po sortowaniu pieniążka";
+    std::cout << "Po sortowaniu pieniążka: "
+              << '\n';
     std::sort(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s, std::unique_ptr<UniversityPerson> &w)
               { return (s->GetMoney() > w->GetMoney()); });
     std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
