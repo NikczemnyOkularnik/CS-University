@@ -63,22 +63,28 @@ void DataBase::GetStudentsWithSurname(const std::string &searchingSurname)
                   });
 }
 
-void DataBase::GetStudentViaID(bool &found, const int &searchingID, std::unique_ptr<UniversityPerson> &resultPerson)
+std::ptrdiff_t DataBase::GetStudentViaID(const int &searchingID)
 {
-    found = false;
+    auto student_to_find = std::find_if(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> & s)
+                                        { return (s->GetID() == searchingID); });
 
-    std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
-                  {
-                      if (PersonType::Student == s->GetPersonType())
-                      {
-                          if (s->GetID() == searchingID)
-                          {
-                              resultPerson = std::move(s);
-                              found = true;
-                              return;
-                          }
-                      }
-                  });
+    auto personPosition = std::distance(person.begin(), student_to_find);
+    std::cout << person[personPosition] -> GetID();
+    return personPosition;
+
+    // found = false;
+    // std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
+    //               {
+    //                   if (PersonType::Student == s->GetPersonType())
+    //                   {
+    //                       if (s->GetID() == searchingID)
+    //                       {
+    //                           resultPerson = std::move(s);
+    //                           found = true;
+    //                           return;
+    //                       }
+    //                   }
+    //               });
 }
 
 void DataBase::ID(int a)
@@ -103,9 +109,7 @@ void DataBase::ID(int a)
 bool DataBase::CheckID(int ID)
 {
     auto position = std::find_if(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &per)
-                         {
-                             return (per->GetID() == ID);
-                         });
+                                 { return (per->GetID() == ID); });
 
     auto IDposition = std::distance(person.begin(), position);
     return (person[IDposition]->GetID() == ID);
