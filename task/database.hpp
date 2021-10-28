@@ -9,7 +9,6 @@ class DataBase
 {
     std::vector<std::unique_ptr<UniversityPerson>> person; 
 public:
-    std::vector<std::unique_ptr<UniversityPerson>> GetDbVector() {return person;}
     void add_student(std::unique_ptr<Student>&);
     void add_worker(std::unique_ptr<Worker>&);
     void show_database();
