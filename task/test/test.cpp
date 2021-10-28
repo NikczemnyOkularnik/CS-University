@@ -133,57 +133,76 @@ SCENARIO("Checking getters for database")
         db->add_worker(worker3);
 
         REQUIRE(db->getDbSize() == 7);
+        REQUIRE(db->GetDBCapacity() == 8);
 
         db->SortSurnames();
-        // WHEN("GetSurname")
-        // {
-        //     THEN("vector contains Adamiec")
-        //     {
-        //         auto & Surname0 = people[1];
-        //         CHECK(Surname0->GetSurname() == "Adamiec");
-        //     }
-        // }
-        // WHEN("GetName")
-        // {
-        //     THEN("Vector contains name Kasia")
-        //     {
-        //         auto & Name0 = people[1];
-        //         CHECK(Name0->GetName() == "Kasia");
-        //     }
-        // }
-        // WHEN("GetAddress")
-        // {
-        //     THEN("Vector contains Gdańsk")
-        //     {
-        //         auto & Address0 = people[3];
-        //         CHECK(Address0->GetAddress() == "Gdańsk");
-        //     }
-        // }
-        // WHEN("GetID")
-        // {
-        //     THEN("Vector contains 144")
-        //     {
-        //         auto & ID0 = people[1];
-        //         CHECK(ID0->GetID() == 144);
-        //     }
-        // }
-        // WHEN("GetIndex")
-        // {
-        //     THEN("Vector contains 2145")
-        //     {
-        //         auto & Index0 = people[1];
-        //         CHECK(Index0->GetIndex() == 2145);
-        //     }
-        // }
-        // WHEN("GetGender")
-        // {
-        //     THEN("Vector contains Gender")
-        //     {
-        //         auto & Gender0 = people[1];
-        //         auto & Gender1 = people[0];
-        //         CHECK(Gender0->GetGenderInString() == "Dziewczyna");
-        //         CHECK(Gender1->GetGenderInString() == "Chłopak");
-        //     }
-        // }
+        WHEN("GetSurname")
+        {
+            THEN("vector contains Adamiec")
+            {
+                auto Surname0 = db->person[0]->GetSurname();
+                CHECK(Surname0 == "Adamiec");
+            }
+        }
+        WHEN("GetName")
+        {
+            THEN("Vector contains name Krzysztof")
+            {
+                auto Name0 = db->person[1]->GetName();
+                CHECK(Name0 == "Krzysztof");
+            }
+        }
+        WHEN("GetAddress")
+        {
+            THEN("Vector contains Gdańsk")
+            {
+                auto Address0 = db->person[2]->GetAddress();
+                CHECK(Address0 == "Gdańsk");
+            }
+        }
+        WHEN("GetID")
+        {
+            THEN("Vector contains 37")
+            {
+                auto ID0 = db->person[2]->GetID();
+                CHECK(ID0 == 37);
+            }
+        }
+        WHEN("GetIndex")
+        {
+            THEN("Vector contains 2145")
+            {
+                auto Index0 = db->person[0]->GetIndex();
+                CHECK(Index0 == 2145);
+            }
+        }
+        WHEN("GetGender")
+        {
+            THEN("Vector contains Gender")
+            {
+                auto Gender0 = db->person[0]->GetGenderInString();
+                auto Gender1 = db->person[1]->GetGenderInString();
+                CHECK(Gender0 == "Dziewczyna");
+                CHECK(Gender1 == "Chłopak");
+            }
+        }
+        WHEN("GetMoney")
+        {
+            THEN("Vector contains Money = 2500")
+            {
+                auto Money1 = db->person[1]->GetMoney();
+                CHECK(Money1 == 2500);
+            }
+        }
+        WHEN("GetPersonType")
+        {
+            THEN("Vector contains PersonType")
+            {
+                auto Type0 = db->person[0]->GetPersonType();
+                auto Type1 = db->person[1]->GetPersonType();
+                CHECK(Type0 == PersonType::Student);
+                CHECK(Type1== PersonType::Worker);
+            }
+        }
     }
 }

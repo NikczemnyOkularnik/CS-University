@@ -23,8 +23,8 @@ public:
     void DeleteByIndex(int);
     void ID(int);
     bool CheckID(int);
-    size_t getDbSize() { return person.size(); }
-    void GetDBCapacity();
+    size_t getDbSize();
+    size_t GetDBCapacity();
     DataBase();
     ~DataBase();
 };

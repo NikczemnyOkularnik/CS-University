@@ -177,10 +177,13 @@ void DataBase::DeleteByIndex(int deleteIndex)
         person.shrink_to_fit();
     }
 }
-
-void DataBase::GetDBCapacity()
+size_t DataBase::getDbSize() 
+{ 
+    return person.size(); 
+}
+size_t DataBase::GetDBCapacity()
 {
-    std::cout << person.capacity();
+    return person.capacity();
 }
 
 void DataBase::earning_modification(const int ID, const int newSalary)
