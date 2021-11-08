@@ -14,7 +14,6 @@ target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib)
 
 target_compile_options(${PROJECT_NAME} PRIVATE ${COMP_FLAGS})
 target_compile_options(${PROJECT_NAME}-lib PRIVATE ${COMP_FLAGS})
-#target_compile_options temporary without tests
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
                       CXX_STANDARD 17

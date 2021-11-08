@@ -26,7 +26,6 @@ public:
     size_t getDbSize();
     size_t GetDBCapacity();
     DataBase();
-    ~DataBase();
 };
 struct sortSurnamesComparator
 {

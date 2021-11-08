@@ -9,7 +9,7 @@ SCENARIO("Adding new students to database")
 {
     GIVEN("Database and students")
     {
-        DataBase *db = new DataBase();
+        auto db = std::make_unique<DataBase>();
 
         auto student1 = std::make_unique<Student>("Stanisław", "Nowak", "Szczecin", 12, Gender::Male, 215);
         auto student2 = std::make_unique<Student>("Kasia", "Adamiec", "Warszawa", 144, Gender::Female, 2145);
@@ -25,7 +25,7 @@ SCENARIO("Adding new students to database")
         db->add_worker(worker2);
         db->add_worker(worker3);
 
-        REQUIRE(db->getDbSize() == 6);
+        REQUIRE(db->getDbSize() == 41);
 
         WHEN("Find student with surname Nowak")
         {
@@ -102,7 +102,7 @@ SCENARIO("Adding new students to database")
             db->DeleteByIndex(215);
             THEN("Student should be erased from db vector by using index, size should be smaller")
             {
-                REQUIRE(db->person.size() == 5);
+                REQUIRE(db->person.size() == 40);
                 auto result = db->CheckID(12);
                 CHECK(result == false);
             }
@@ -114,7 +114,7 @@ SCENARIO("Checking getters for database")
 {
     GIVEN("Database and students")
     {
-        DataBase *db = new DataBase();
+        auto db = std::make_unique<DataBase>();
 
         auto student1 = std::make_unique<Student>("Stanisław", "Nowak", "Szczecin", 12, Gender::Male, 215);
         auto student2 = std::make_unique<Student>("Kasia", "Adamiec", "Warszawa", 144, Gender::Female, 2145);
@@ -132,8 +132,8 @@ SCENARIO("Checking getters for database")
         db->add_worker(worker2);
         db->add_worker(worker3);
 
-        REQUIRE(db->getDbSize() == 7);
-        REQUIRE(db->GetDBCapacity() == 8);
+        REQUIRE(db->getDbSize() == 42);
+        REQUIRE(db->GetDBCapacity() == 64);
 
         db->SortSurnames();
         WHEN("GetSurname")

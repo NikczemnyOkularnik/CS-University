@@ -6,8 +6,8 @@
 #include <typeinfo>
 DataBase::DataBase()
 {
-    // Generator *g = new Generator();
-    // g->GeneratePersonel(30, 5, person);
+    Generator *g = new Generator();
+    g->GeneratePersonel(30, 5, person);
 }
 void DataBase::add_student(std::unique_ptr<Student> &St)
 {
@@ -80,7 +80,7 @@ void DataBase::ID(int a)
                                 {
                                     if (per->GetID() == a)
                                     {
-                                        std::cout << "Istnieje student z podanym ID: " << a << "\n";
+                                        std::cout << "There is a student with the specified ID : " << a << "\n";
                                         per->Print();
                                     }
                                     return (per->GetID() == a);
@@ -89,7 +89,7 @@ void DataBase::ID(int a)
     if (IDCheck == person.end())
     {
         std::cout << '\n';
-        std::cout << "Brak ID " << a << " w bazie danych. Obecne ID w bazie danych: " << '\n';
+        std::cout << "no ID " << a << " in the database. The current ID in the database:  " << '\n';
         show_students();
     }
 }
@@ -110,15 +110,15 @@ bool DataBase::CheckID(int ID)
 }
 void DataBase::SortSurnames()
 {
-    std::cout << "Przed sortowaniem nazwisk: " << '\n';
+    std::cout << "Before sorting the surnames: " << '\n';
     std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
                   {
                       s->Print();
                       std::cout << "\n";
                   });
     std::sort(person.begin(), person.end(), sortSurnamesComparator());
-    std::cout << "\n";
-    std::cout << "Po sortowaniu nazwisk: " << '\n';
+    std::cout << '\n';
+    std::cout << "After sorting the surnames: " << '\n';
     std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
                   {
                       s->Print();
@@ -127,7 +127,7 @@ void DataBase::SortSurnames()
 }
 void DataBase::SortSalary()
 {
-    std::cout << "Przed sortowaniem pieniążka: "
+    std::cout << "Before sorting money: "
               << "\n";
     std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
                   {
@@ -135,7 +135,7 @@ void DataBase::SortSalary()
                       std::cout << "\n";
                   });
     std::cout << '\n';
-    std::cout << "Po sortowaniu pieniążka: "
+    std::cout << "After sorting money: "
               << '\n';
     std::sort(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s, std::unique_ptr<UniversityPerson> &w)
               { return (s->GetMoney() > w->GetMoney()); });
@@ -148,16 +148,14 @@ void DataBase::SortSalary()
 
 void DataBase::SortID()
 {
-    std::cout << "Przed sortowaniem ID: "
-              << "\n";
+    std::cout << "Before sorting the ID: " << '\n';
     std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
                   {
                       s->Print();
                       std::cout << "\n";
                   });
-    std::cout << "\n";
-    std::cout << "Po sortowaniu ID: "
-              << "\n";
+    std::cout << '\n';
+    std::cout << "After sorting the ID: " << '\n';
     std::sort(person.begin(), person.end(), sortIDComparator());
 
     std::for_each(person.begin(), person.end(), [&](std::unique_ptr<UniversityPerson> &s)
